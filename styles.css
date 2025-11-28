@@ -144,6 +144,13 @@ body {
   color: var(--accent);
   outline: none;
 }
+/* Estilo para el enlace de navegación activo (página actual) */
+.site-nav a.active,
+.site-nav a.current {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(176,0,0,0.18);
+}
 
 /* Enfoque visible y consistente */
 a:focus-visible,

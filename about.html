@@ -86,5 +86,19 @@
         <p>Enlaces rápidos: <a href="index.html#comparison">Tabla comparativa</a> · <a href="survey.html">Encuesta</a></p>
       </div>
     </footer>
+    <script>
+      (function () {
+        try {
+          var path = location.pathname.split('/').pop() || 'index.html';
+          var navLinks = document.querySelectorAll('.site-nav a');
+          navLinks.forEach(function (a) {
+            var href = a.getAttribute('href');
+            if (!href) return;
+            var hrefFile = href.split('/').pop();
+            if (hrefFile === path) a.classList.add('active');
+          });
+        } catch (e) {}
+      })();
+    </script>
   </body>
 </html>

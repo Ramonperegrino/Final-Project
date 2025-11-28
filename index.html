@@ -137,5 +137,27 @@
         <p>Recursos: <a href="index.html#comparison">Tabla comparativa</a> · <a href="survey.html">Encuesta</a></p>
       </div>
     </footer>
+    <script>
+      // Marcar el enlace de navegación activo según el nombre de archivo actual
+      (function () {
+        try {
+          var path = location.pathname.split('/').pop() || 'index.html';
+          var navLinks = document.querySelectorAll('.site-nav a');
+          navLinks.forEach(function (a) {
+            var href = a.getAttribute('href');
+            // Normalizar: comparar solo el nombre del archivo
+            if (!href) return;
+            var hrefFile = href.split('/').pop();
+            if (hrefFile === path) {
+              a.classList.add('active');
+            }
+            // También marcar cuando href es un anchor to current page section
+            if (hrefFile === '' && path === 'index.html' && href.indexOf('#') === 0) {
+              a.classList.add('active');
+            }
+          });
+        } catch (e) { /* no bloquear si falla */ }
+      })();
+    </script>
   </body>
 </html>

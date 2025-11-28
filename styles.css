@@ -152,6 +152,22 @@ body {
   box-shadow: 0 6px 14px rgba(176,0,0,0.18);
 }
 
+/* Enlaces externos dentro de la navegación (p. ej. "Nissan oficial", "Toyota oficial")
+   Se usan selectores por atributo para no requerir cambios en el HTML; así quedan
+   visualmente diferenciados respecto a los enlaces internos. */
+.site-nav a[target="_blank"] {
+  color: #0056b3; /* azul oscuro, contrastado y claramente distinto al gris interno */
+  background: transparent;
+  border: 1px solid rgba(0,86,179,0.08);
+  padding: 0.4rem 0.75rem;
+}
+.site-nav a[target="_blank"]:hover,
+.site-nav a[target="_blank"]:focus {
+  color: #003f7f;
+  background: rgba(0,86,179,0.06);
+  outline: none;
+}
+
 /* Enfoque visible y consistente */
 a:focus-visible,
 button:focus-visible,

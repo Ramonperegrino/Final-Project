@@ -1,9 +1,13 @@
 /* Estilos simples y accesibles */
 :root {
-  --max-width: 900px;
-  /* Color de acento ajustado para mejor contraste */
-  --accent: #990000;
-  --muted: #555;
+  --max-width: 1100px;
+  /* Paleta mejorada: acento oscuro, acento claro para contrastes */
+  --accent: #b00000;
+  --accent-contrast: #ffdede;
+  --muted: #5a5a5a;
+  --bg: #f7f7f8;
+  --card-bg: #ffffff;
+  --surface-shadow: 0 6px 18px rgba(15, 15, 15, 0.06);
 }
 
 * {
@@ -12,20 +16,21 @@
 
 body {
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  line-height: 1.45;
-  color: #111;
+  line-height: 1.6;
+  color: #111212;
   padding: 0;
   margin: 0;
-  background: #fbf7f7; /* fondo general tenue */
+  background: linear-gradient(180deg, var(--bg), #ffffff 40%);
+  -webkit-font-smoothing:antialiased;
   /* Tamaño de fuente fluido para mejor legibilidad en móviles y desktop */
-  font-size: clamp(16px, 1rem + 0.2vw, 18px);
+  font-size: clamp(16px, 1rem + 0.25vw, 18px);
 }
 
 /* Contenedor principal */
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1.25rem;
 }
 
 /* Enlace para saltar contenido */
@@ -50,11 +55,12 @@ body {
 
 /* Encabezado */
 .site-header {
-  /* Fondo rojizo suave para el header */
-  background: linear-gradient(180deg, #fff3f3, #fff8f8);
-  border-bottom: 4px solid var(--accent);
+  /* Fondo sutil y separación */
+  background: linear-gradient(180deg, var(--card-bg), #fff);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
   text-align: center;
-  padding: 0.75rem 0 1rem;
+  padding: 1rem 0 1.25rem;
+  box-shadow: var(--surface-shadow);
 }
 .site-header h1 {
   /* Título fluido: escala suavemente entre móvil y desktop */
@@ -66,6 +72,21 @@ body {
   margin: 0;
   font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
 }
+
+/* Presentación más clara para marca y CTA */
+.header-brand {
+  justify-content: space-between;
+  gap: 1rem;
+}
+.logo {
+  font-size: 1.15rem;
+  letter-spacing: 0.2px;
+}
+.header-ctas .btn {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.header-ctas .btn:hover { transform: translateY(-2px); }
 
 /* Header: marca y CTA */
 .header-brand {
@@ -110,17 +131,18 @@ body {
   flex-wrap: wrap;
 }
 .site-nav a {
-  color: var(--accent);
+  color: #333;
   text-decoration: none;
-  font-weight: 500;
-  /* Aumenta área táctil para móviles */
+  font-weight: 600;
   display: inline-block;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
+  padding: 0.5rem 0.9rem;
+  border-radius: 12px;
 }
-.site-nav a:focus,
-.site-nav a:hover {
-  text-decoration: underline;
+.site-nav a:hover,
+.site-nav a:focus {
+  background: var(--accent-contrast);
+  color: var(--accent);
+  outline: none;
 }
 
 /* Enfoque visible y consistente */
@@ -181,6 +203,15 @@ figcaption {
   margin-top: 0.3rem;
 }
 
+/* Secciones como tarjetas para mejor lectura */
+.site-main .container > section {
+  background: var(--card-bg);
+  padding: 1rem 1.15rem;
+  margin: 1rem 0;
+  border-radius: 10px;
+  box-shadow: var(--surface-shadow);
+}
+
 /* Imagen de logos */
 .brand-logos img {
   max-width: 100%;
@@ -209,12 +240,16 @@ figcaption {
 }
 .compare-table th,
 .compare-table td {
-  border: 1px solid #ddd;
-  padding: 0.5rem;
+  border: 1px solid #efefef;
+  padding: 0.75rem 0.65rem;
   text-align: left;
 }
 .compare-table th {
-  background: #f3f3f3;
+  background: #fafafa;
+  font-weight: 700;
+}
+.compare-table tbody tr:nth-child(even) {
+  background: #fbfbfb;
 }
 
 /* Formulario */
@@ -232,21 +267,20 @@ input[type="email"] {
   border: 1px solid #bbb;
   border-radius: 3px;
 }
+input[type="text"], input[type="email"] { transition: box-shadow .12s ease, border-color .12s ease; }
+input[type="text"]:focus, input[type="email"]:focus { box-shadow: 0 6px 18px rgba(11,11,11,0.06); border-color: var(--accent); }
 button {
-  background: var(--accent);
+  background: linear-gradient(180deg, var(--accent), #8a0000);
   color: #fff;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.15rem;
   border: none;
-  border-radius: 3px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
-  /* Altura mínima para cumplir objetivo táctil ~44px */
   min-height: 44px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
 }
-button:hover,
-button:focus {
-  background: #7a0000;
-}
+button:hover, button:focus { transform: translateY(-2px); outline: none; }
 
 /* Mensajes de error / validación visibles */
 .field-error {
@@ -291,6 +325,13 @@ select.error {
 }
 .site-footer a:hover {
   text-decoration: underline;
+}
+
+/* Ajustes responsivos refinados */
+@media (max-width: 700px) {
+  .header-brand { flex-direction: column; align-items: center; }
+  .site-header h1 { font-size: 1.25rem; }
+  .container { padding: 1rem; }
 }
 
 /* Responsivo */

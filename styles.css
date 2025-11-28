@@ -264,8 +264,32 @@ input[type="text"],
 input[type="email"] {
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid #bbb;
-  border-radius: 3px;
+  /* Borde más visible para asegurar contraste con el entorno */
+  border: 2px solid #444444;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #111111;
+}
+/* Placeholders: usar color claramente oscuro y forzar opacidad completa */
+input::placeholder,
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+textarea::placeholder,
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #222222;
+  opacity: 1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #333333;
+  opacity: 1;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #333333;
+  opacity: 1;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #333333;
+  opacity: 1;
 }
 input[type="text"], input[type="email"] { transition: box-shadow .12s ease, border-color .12s ease; }
 input[type="text"]:focus, input[type="email"]:focus { box-shadow: 0 6px 18px rgba(11,11,11,0.06); border-color: var(--accent); }

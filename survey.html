@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Encuesta — Nissan vs Toyota</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+
+    <header class="site-header" role="banner">
+      <div class="container">
+        <div class="header-brand">
+          <a class="logo" href="index.html">Comparativa: Nissan · Toyota</a>
+          <div class="header-ctas">
+            <a class="btn" href="survey.html">Participa</a>
+            <a class="btn secondary" href="mailto:info@example.com">Contacto</a>
+          </div>
+        </div>
+        <h1>Encuesta: ¿Qué marca prefieres?</h1>
+        <p class="tagline">Tu opinión ayuda a ilustrar percepciones comunes sobre ambas marcas.</p>
+      </div>
+    </header>
+
+    <nav class="site-nav" role="navigation" aria-label="Navegación principal">
+      <div class="container">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="about.html">Acerca</a></li>
+          <li><a href="survey.html">Encuesta</a></li>
+          <li><a href="https://www.nissan-global.com/" target="_blank" rel="noopener">Nissan oficial</a></li>
+          <li><a href="https://global.toyota/" target="_blank" rel="noopener">Toyota oficial</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main id="main" class="site-main" role="main">
+      <div class="container">
+        <section id="survey">
+          <h2>Encuesta rápida</h2>
+          <p>Participa y cuéntanos qué marca prefieres.</p>
+
+          <p>
+            La encuesta es anónima y sirve para recopilar percepciones generales sobre las marcas.
+            Tus respuestas ayudan a ilustrar tendencias y no se almacenan en un servidor público.
+          </p>
+
+          <div class="brand-logos">
+            <figure>
+              <img src="https://www.nissanserdan.com.mx/static/agency-go-virtual/Nissan/Versa/2024/Exterior-4.jpg"
+                   alt="Nissan Versa 2024, vista exterior" width="640" height="360" loading="lazy" />
+            </figure>
+            <figure>
+              <img src="https://toyotaoaxaca.com.mx/wp-content/uploads/2019/05/corolla-cover.png"
+                   alt="Toyota Corolla, vista frontal" width="640" height="360" loading="lazy" />
+            </figure>
+          </div>
+
+          <form id="prefForm" aria-describedby="form-desc">
+            <p id="form-desc">Selecciona una opción, deja tu nombre y correo si quieres que te contactemos.</p>
+
+            <fieldset aria-labelledby="survey-heading">
+              <legend id="survey-heading">¿Qué marca prefieres?</legend>
+              <div>
+                <input type="radio" id="pref-nissan" name="brand" value="Nissan" required />
+                <label for="pref-nissan">Nissan</label>
+              </div>
+              <div>
+                <input type="radio" id="pref-toyota" name="brand" value="Toyota" />
+                <label for="pref-toyota">Toyota</label>
+              </div>
+            </fieldset>
+
+            <div class="field-error" id="brand-error"></div>
+
+            <div class="form-row">
+              <label for="name">Nombre (opcional)</label>
+              <input id="name" name="name" type="text" placeholder="Tu nombre" />
+            </div>
+
+            <div class="field-error" id="email-error"></div>
+
+            <div class="form-row">
+              <label for="email">Correo (opcional)</label>
+              <input id="email" name="email" type="email" placeholder="tu@ejemplo.com" />
+            </div>
+
+            <button type="submit" id="submit-btn" title="Enviar encuesta">
+              Enviar
+            </button>
+
+            <div id="form-message" class="form-message" tabindex="-1"></div>
+          </form>
+
+          <script>
+            // Validación y manejo del formulario (sin añadir atributos ARIA nuevos)
+            (function () {
+              var form = document.getElementById('prefForm');
+              var msg = document.getElementById('form-message');
+              var brandError = document.getElementById('brand-error');
+              var emailError = document.getElementById('email-error');
+
+              function clearErrors() {
+                brandError.textContent = '';
+                brandError.classList.remove('visible');
+                emailError.textContent = '';
+                emailError.classList.remove('visible');
+                var errorEls = form.querySelectorAll('.error');
+                errorEls.forEach(function (el) { el.classList.remove('error'); });
+              }
+
+              form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                clearErrors();
+                var formData = new FormData(form);
+                var brand = formData.get('brand');
+                var name = formData.get('name') || '';
+                var email = formData.get('email') || '';
+
+                var invalid = false;
+
+                if (!brand) {
+                  brandError.textContent = 'Por favor selecciona una marca.';
+                  brandError.classList.add('visible');
+                  var firstRadio = form.querySelector('input[name="brand"]');
+                  if (firstRadio) firstRadio.classList.add('error');
+                  if (firstRadio && typeof firstRadio.focus === 'function') firstRadio.focus();
+                  invalid = true;
+                }
+
+                if (email) {
+                  var emailInput = document.getElementById('email');
+                  // Usa la validación nativa del input si está disponible
+                  if (!emailInput.checkValidity()) {
+                    emailError.textContent = 'Escribe un correo válido (ejemplo: tu@ejemplo.com).';
+                    emailError.classList.add('visible');
+                    emailInput.classList.add('error');
+                    if (!invalid) {
+                      emailInput.focus();
+                      invalid = true;
+                    }
+                  }
+                }
+
+                if (invalid) return;
+
+                // Éxito
+                msg.textContent = 'Gracias' + (name ? (', ' + name) : '') + '. Has elegido: ' + brand;
+                form.reset();
+                // Llevar foco al mensaje para confirmación visual
+                if (typeof msg.focus === 'function') msg.focus();
+              });
+            })();
+
+            // Ajustes al cargar: ocultar botones externos problemáticos y limpiar tabindex inválidos
+            document.addEventListener('DOMContentLoaded', function () {
+              var externalButtons = document.querySelectorAll('button.size-10');
+              externalButtons.forEach(function (btn) {
+                try { btn.setAttribute('aria-hidden', 'true'); btn.setAttribute('tabindex', '-1'); } catch (e) { /* deja todo como está si falla */ }
+              });
+              var invalidTabindex = document.querySelectorAll('[tabindex="1"]');
+              invalidTabindex.forEach(function (el) { el.removeAttribute('tabindex'); });
+            });
+          </script>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <p>© 2025 Comparativa estudiantil. Página creada como ejercicio de accesibilidad.</p>
+        <p>Enlaces rápidos: <a href="index.html#comparison">Tabla comparativa</a> · <a href="survey.html">Encuesta</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,328 @@
+/* Estilos simples y accesibles */
+:root {
+  --max-width: 900px;
+  /* Color de acento ajustado para mejor contraste */
+  --accent: #990000;
+  --muted: #555;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  line-height: 1.45;
+  color: #111;
+  padding: 0;
+  margin: 0;
+  background: #fbf7f7; /* fondo general tenue */
+  /* Tamaño de fuente fluido para mejor legibilidad en móviles y desktop */
+  font-size: clamp(16px, 1rem + 0.2vw, 18px);
+}
+
+/* Contenedor principal */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Enlace para saltar contenido */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  background: #000;
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 3px;
+}
+
+/* Encabezado */
+.site-header {
+  /* Fondo rojizo suave para el header */
+  background: linear-gradient(180deg, #fff3f3, #fff8f8);
+  border-bottom: 4px solid var(--accent);
+  text-align: center;
+  padding: 0.75rem 0 1rem;
+}
+.site-header h1 {
+  /* Título fluido: escala suavemente entre móvil y desktop */
+  font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2rem);
+  margin: 0.25rem 0;
+}
+.tagline {
+  color: var(--muted);
+  margin: 0;
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+}
+
+/* Header: marca y CTA */
+.header-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+.logo {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+.header-ctas {
+  display: flex;
+  gap: 0.5rem;
+}
+.header-ctas .btn {
+  background: var(--accent);
+  color: #fff;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.header-ctas .btn.secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+/* Navegación */
+.site-nav ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.site-nav a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  /* Aumenta área táctil para móviles */
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+}
+.site-nav a:focus,
+.site-nav a:hover {
+  text-decoration: underline;
+}
+
+/* Enfoque visible y consistente */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #ffd54f;
+  outline-offset: 3px;
+}
+
+/* Sección de logos */
+.brand-logos {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+/* Contenedor responsivo para vídeos embebidos (16:9) */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+.video-wrapper iframe,
+.video-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.brand-logos img {
+  width: 140px;
+  height: 80px;
+  object-fit: contain;
+  display: block;
+  margin: 0;
+}
+
+
+figure {
+  margin: 0;
+  text-align: center;
+}
+figcaption {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+
+/* Imagen de logos */
+.brand-logos img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  background: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.brand-logos img:hover,
+.brand-logos img:focus {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Tabla comparativa */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+.compare-table caption {
+  font-weight: 700;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+.compare-table th,
+.compare-table td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  text-align: left;
+}
+.compare-table th {
+  background: #f3f3f3;
+}
+
+/* Formulario */
+.form-row {
+  margin: 0.5rem 0;
+}
+label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+}
+button {
+  background: var(--accent);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 1rem;
+  /* Altura mínima para cumplir objetivo táctil ~44px */
+  min-height: 44px;
+}
+button:hover,
+button:focus {
+  background: #7a0000;
+}
+
+/* Mensajes de error / validación visibles */
+.field-error {
+  display: none;
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  background: #fff0f0;
+  border-left: 4px solid var(--accent);
+  color: #550000;
+  border-radius: 3px;
+}
+.field-error.visible {
+  display: block;
+}
+
+input.error,
+textarea.error,
+select.error {
+  box-shadow: 0 0 0 3px rgba(153, 0, 0, 0.12);
+  border-color: #990000;
+}
+
+/* Mensaje de formulario */
+.form-message {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: #f0f8ff;
+  border-radius: 3px;
+}
+
+/* Pie de página */
+.site-footer {
+  border-top: 1px solid #e6e6e6;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  text-align: center;
+  color: var(--muted);
+}
+.site-footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .site-nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  .brand-logos {
+    flex-direction: column;
+  }
+  /* Evita desbordes horizontales por tablas en pantallas pequeñas */
+  .compare-table {
+    display: block;           /* Permite scroll horizontal en la propia tabla */
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .container {
+    padding: 1.25rem;        /* Mayor respiración en móvil para evitar que el contenido toque los bordes */
+  }
+}
+
+/* Mejoras generales de medios: aseguran elementos fluidos */
+img, svg, video, canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Tipografía ligeramente mayor en pantallas amplias para confort */
+@media (min-width: 900px) {
+  body {
+    font-size: clamp(17px, 1rem + 0.4vw, 19px);
+  }
+}
